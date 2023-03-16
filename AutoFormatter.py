@@ -4,21 +4,30 @@ import pandas as pd
 from openpyxl import load_workbook
 from pathlib import Path
 
+#file = input('Nome do arquivo: ')
 
 print("--------------------------------")
 print("          CARREGANDO . . .      ")
 print("--------------------------------")
 
+if getattr(sys, 'frozen', False):
+    application_path = os.path.dirname(sys.executable)
+elif __file__:
+    application_path = os.path.dirname(__file__)
 
-#Encontrar o arquivo .xlsx
-os.chdir(os.path.dirname(__file__))
+
+os.chdir(application_path)
 for root, dirs, files in os.walk("."):
     for filename in files:
         if filename.endswith('.xlsx'):
             f = filename
 
+#Encontrar o arquivo .xlsx
+config_path = os.path.join(application_path, f)
+print(config_path)
+
 #carregar arquivo 
-wb = load_workbook(f)
+wb = load_workbook(config_path)
 ws = wb.active
 
 #deletar colunas

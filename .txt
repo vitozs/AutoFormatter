@@ -31,3 +31,22 @@ def resource_path(relative_path):
         base_path = os.path.abspath(".")
 
     return os.path.join(base_path, relative_path)
+
+
+
+
+/********************************/
+os.chdir(os.path.dirname(__file__))
+for root, dirs, files in os.walk("."):
+    for filename in files:
+        if filename.endswith('.xlsx'):
+            f = filename
+
+
+/**************************************/
+if getattr(sys, 'frozen', False):
+    application_path = os.path.dirname(sys.executable)
+elif __file__:
+    application_path = os.path.dirname(__file__)
+
+config_path = os.path.join(application_path, config_name)
